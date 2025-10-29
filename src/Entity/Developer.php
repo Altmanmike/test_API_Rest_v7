@@ -31,10 +31,10 @@ class Developer
     #[ORM\Column]
     private ?bool $isParticipant = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]  
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]  
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int

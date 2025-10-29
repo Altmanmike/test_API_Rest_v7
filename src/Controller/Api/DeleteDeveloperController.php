@@ -16,10 +16,10 @@ final class DeleteDeveloperController
         private readonly DeveloperRepository $devRepo        
     ) {}
     
-    #[Route('/api/developers/{id}', name: 'app_show_developer', methods: ['DELETE'])]
-    public function delete(#[MapEntity(id: 'id', message: 'Not found')] Developer $developer): Response
+    #[Route('/api/developers/{id}', name: 'app_delete_developer', methods: ['DELETE'])]
+    public function delete(#[MapEntity(expr: 'repository.find(id)', message: 'Not found')] Developer $developer): Response
     {
-        $this->devRepo->remove($developer);
+        $this->devRepo->remove($developer, true);
         
         return new Response(null, Response::HTTP_NO_CONTENT);
     }

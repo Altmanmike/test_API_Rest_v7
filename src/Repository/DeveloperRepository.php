@@ -40,8 +40,8 @@ class DeveloperRepository extends ServiceEntityRepository
         }
 
         if($query->companies) {
-            $qb->andWhere('d.companies = :val');
-            $qb->setParameter('val', $query->companies);
+            $qb->andWhere('d.companies LIKE :val');
+            $qb->setParameter('val', "%$query->companies%");                   
         }
 
         if($query->experience) {

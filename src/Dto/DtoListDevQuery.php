@@ -2,10 +2,6 @@
 
 namespace App\Dto;
 
-use App\Entity\Developer;
-use Symfony\Component\ObjectMapper\Attribute\Map;
-
-#[Map(target: Developer::class)]
 final readonly class DtoListDevQuery {
     
     public function __construct(
@@ -27,7 +23,6 @@ final readonly class DtoListDevQuery {
         public int $page = 1,
         
         public int $itemsPerPage = 4,
-    ) {
-        
+    ) {        
     }    
 }
