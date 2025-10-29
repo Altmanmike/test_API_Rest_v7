@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\DeveloperRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\DeveloperRepository;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: DeveloperRepository::class)]
+#[Groups(['developer:read'])]
 class Developer
 {
     #[ORM\Id]
@@ -14,7 +16,7 @@ class Developer
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255)]    
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -29,10 +31,10 @@ class Developer
     #[ORM\Column]
     private ?bool $isParticipant = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]  
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]  
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
